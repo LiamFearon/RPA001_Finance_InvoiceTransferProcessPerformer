@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2356.8,1231.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2356.8,1487.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="44">
@@ -72,7 +72,7 @@
       <AssemblyReference>UiPath.Mail</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Flowchart DisplayName="Process Workflow" sap:VirtualizedContainerService.HintSize="722.4,651.2" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+  <Flowchart DisplayName="Process Workflow" sap:VirtualizedContainerService.HintSize="731.2,1008" sap2010:WorkflowViewState.IdRef="Flowchart_1">
     <Flowchart.Variables>
       <Variable x:TypeArguments="x:String" Name="str_InvoiceID" />
       <Variable x:TypeArguments="x:String" Name="str_VendorID" />
@@ -87,36 +87,33 @@
         <av:Point x:Key="ShapeLocation">310,2.66666666666666</av:Point>
         <av:Size x:Key="ShapeSize">60,75.2</av:Size>
         <av:PointCollection x:Key="ConnectorLocation">340,77.3333333333333 340,105.333333333333</av:PointCollection>
-        <x:Double x:Key="Width">689</x:Double>
-        <x:Double x:Key="Height">614.133333333333</x:Double>
+        <x:Double x:Key="Width">697.99999999999989</x:Double>
+        <x:Double x:Key="Height">971.24</x:Double>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
       <x:Reference>__ReferenceID7</x:Reference>
     </Flowchart.StartNode>
-    <FlowDecision x:Name="__ReferenceID3" DisplayName="Vendor Folder Exists?" sap:VirtualizedContainerService.HintSize="117.6,87.2" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
-      <FlowDecision.Condition>
-        <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="Directory.Exists(str_PATH + str_VendorID)" />
-      </FlowDecision.Condition>
+    <FlowDecision x:Name="__ReferenceID3" Condition="[Directory.Exists(str_PATH + str_VendorID)]" DisplayName="Vendor Folder Exists?" sap:VirtualizedContainerService.HintSize="117.6,87.2" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <av:Point x:Key="ShapeLocation">281.2,316.4</av:Point>
+          <av:Point x:Key="ShapeLocation">281.2,516.4</av:Point>
           <av:Size x:Key="ShapeSize">117.6,87.2</av:Size>
-          <av:PointCollection x:Key="TrueConnector">281.2,360 251.2,360 251.2,370.42 240,370.42</av:PointCollection>
-          <av:PointCollection x:Key="FalseConnector">398.8,360 428.8,360 428.8,370.066666666667 450,370.066666666667</av:PointCollection>
+          <av:PointCollection x:Key="TrueConnector">281.2,560 200,560</av:PointCollection>
+          <av:PointCollection x:Key="FalseConnector">398.8,560 490,560</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <FlowDecision.True>
         <FlowStep x:Name="__ReferenceID1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:Point x:Key="ShapeLocation">40,344.02</av:Point>
+              <av:Point x:Key="ShapeLocation">0,533.6</av:Point>
               <av:Size x:Key="ShapeSize">200,52.8</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">140,396.82 140,435.333333333333</av:PointCollection>
+              <av:PointCollection x:Key="ConnectorLocation">100,586.4 100,619.6</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Vendor folder already exists&quot;]">
+          <ui:LogMessage DisplayName="Notifiy - Vendor Folder Exists" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Vendor folder already exists&quot;]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -127,15 +124,16 @@
             <FlowStep x:Name="__ReferenceID0">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <av:Point x:Key="ShapeLocation">40,435.333333333333</av:Point>
-                  <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">140,504.133333333333 140,545.333333333333</av:PointCollection>
+                  <av:Point x:Key="ShapeLocation">0,619.6</av:Point>
+                  <av:Size x:Key="ShapeSize">200,160.8</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">100,780.4 100,805.6</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Step 2" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence sap2010:Annotation.AnnotationText="Builds invoice using unpacked data, downloads invoice, then clears downloads in chrome to stabilize process for multiple transactions" DisplayName="Build and Download Invoice" sap:VirtualizedContainerService.HintSize="200,160.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="436.8,291.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
@@ -230,18 +228,19 @@
                 <FlowStep x:Name="__ReferenceID5">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:Point x:Key="ShapeLocation">40,545.333333333333</av:Point>
-                      <av:Size x:Key="ShapeSize">200,68.8</av:Size>
+                      <av:Point x:Key="ShapeLocation">0,805.6</av:Point>
+                      <av:Size x:Key="ShapeSize">200,128.8</av:Size>
                       <av:PointCollection x:Key="ConnectorLocation">370,204.666666666667 370,236.5</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Sequence DisplayName="Step 3" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence sap2010:Annotation.AnnotationText="Moves downloaded invoice to invoice folder created earlier in flow" DisplayName="Move Invoice to Vendor Folder" sap:VirtualizedContainerService.HintSize="200,128.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:String" Default="[str_VendorID + &quot;\&quot; + str_InvoiceID +&quot; &quot; + DateTime.Now.ToString(&quot;dd-MM-yyyy hh_mm&quot;) + &quot;.pdf&quot;]" Name="str_FileName" />
                     </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <ui:MoveFile ContinueOnError="{x:Null}" Destination="[str_PATH +str_FileName]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="384,160" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="False" Path="C:\Users\tehbo\Downloads\bills.pdf" />
@@ -256,12 +255,12 @@
         <FlowStep x:Name="__ReferenceID2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:Point x:Key="ShapeLocation">450,343.666666666667</av:Point>
+              <av:Point x:Key="ShapeLocation">490,533.6</av:Point>
               <av:Size x:Key="ShapeSize">200,52.8</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">550,396.466666666667 550,435.333333333333</av:PointCollection>
+              <av:PointCollection x:Key="ConnectorLocation">590,586.4 590,635.6</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;Vendor folder doesn't exist. Creating folder...&quot;]">
+          <ui:LogMessage DisplayName="Notify - Vendor Profile to be Created" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;Vendor folder doesn't exist. Creating folder...&quot;]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -272,15 +271,16 @@
             <FlowStep x:Name="__ReferenceID4">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <av:Point x:Key="ShapeLocation">450,435.333333333333</av:Point>
-                  <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">450,469.733333333333 240,469.733333333333</av:PointCollection>
+                  <av:Point x:Key="ShapeLocation">490,635.6</av:Point>
+                  <av:Size x:Key="ShapeSize">200,128.8</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">490,700 200,700</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence DisplayName="Step 4" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence sap2010:Annotation.AnnotationText="Create new Folder named by str_VendorID (Tax No on ACME)" DisplayName="Create Vendor Folder" sap:VirtualizedContainerService.HintSize="200,128.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="333.6,80.8" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[str_PATH + str_VendorID]" />
@@ -299,14 +299,15 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">240,105.333333333333</av:Point>
-          <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">340,174.133333333333 340,211.333333333333</av:PointCollection>
+          <av:Size x:Key="ShapeSize">200,128.8</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">340,234.133333333333 340,305.6</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Unpack Data" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+      <Sequence sap2010:Annotation.AnnotationText="Isolate specific info to seperate variables for processing" DisplayName="Unpack Data" sap:VirtualizedContainerService.HintSize="200,128.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="333.6,224" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
@@ -360,15 +361,16 @@
         <FlowStep x:Name="__ReferenceID6">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:Point x:Key="ShapeLocation">240,211.333333333333</av:Point>
-              <av:Size x:Key="ShapeSize">200,68.8</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">340,280.133333333333 340,316.4</av:PointCollection>
+              <av:Point x:Key="ShapeLocation">240,305.6</av:Point>
+              <av:Size x:Key="ShapeSize">200,160.8</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">340,466.4 340,516.4</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence DisplayName="Validate Data" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence sap2010:Annotation.AnnotationText="Check date of invoice for valid date,&#xD;&#xA;Check currency of str_InvoiceTotal, coverting to GBP if needed" DisplayName="Validate Data" sap:VirtualizedContainerService.HintSize="200,160.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If Condition="[str_InvoiceDate.Equals(&quot;00/00/0000&quot;)]" sap:VirtualizedContainerService.HintSize="519.2,435.2" sap2010:WorkflowViewState.IdRef="If_1">
