@@ -1,5 +1,5 @@
 {
-  "name": "RPA001_Finance_InvoiceTransferProcessDispatcher",
+  "name": "RPA001_Finance_InvoiceTransferProcessPerformer",
   "description": "Dummy project for Robiquity training using business standard ReFramework",
   "main": "Main.xaml",
   "dependencies": {
