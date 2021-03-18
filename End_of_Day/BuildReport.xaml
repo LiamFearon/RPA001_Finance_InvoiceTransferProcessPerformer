@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2356.8,1231.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>820.8,639.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>BuildReport_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="29">
@@ -109,7 +109,7 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="lfearon@robiquity.com" Body="[&quot;Good Afternoon,&quot; + Environment.NewLine +Environment.NewLine +&#xA;&quot;The Invoice Transfer Process ran &quot; + (Integer.Parse(str_SuccessfulJobsCount) + Integer.Parse(str_FailedJobsCount)).ToString + &quot; items today.&quot; + Environment.NewLine + &#xA;&quot;Of those cases; &quot; + Environment.NewLine + Environment.NewLine +&#xA;str_SuccessfulJobsCount + &quot; were successfull.&quot; + Environment.NewLine + &#xA;str_FailedJobsCount + &quot; have failed.&quot; + Environment.NewLine + Environment.NewLine +&#xA;&quot;Kind regards, &quot; + Environment.NewLine + &#xA;&quot;Your Friendly Neighbourhood Robot&quot;]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="333.6,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;Invoice Transfer Process - End of Day Report &quot; + Date.Now.Date.ToString(&quot;dd/MM/yyyy&quot;)]" To="[str_Emails]">
+    <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="lfearon@robiquity.com" Body="[&quot;Good Afternoon,&quot; + Environment.NewLine +Environment.NewLine +&#xD;&#xA;&quot;The Invoice Transfer Process ran &quot; + (Integer.Parse(str_SuccessfulJobsCount) + Integer.Parse(str_FailedJobsCount)).ToString + &quot; items today.&quot; + Environment.NewLine + &#xD;&#xA;&quot;Of those cases; &quot; + Environment.NewLine + Environment.NewLine +&#xD;&#xA;str_SuccessfulJobsCount + &quot; were successfull.&quot; + Environment.NewLine + &#xD;&#xA;str_FailedJobsCount + &quot; have failed.&quot; + Environment.NewLine + Environment.NewLine +&#xD;&#xA;&quot;Kind regards, &quot; + Environment.NewLine + &#xD;&#xA;&quot;Your Friendly Neighbourhood Robot&quot;]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="333.6,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;Invoice Transfer Process - End of Day Report &quot; + Date.Now.Date.ToString(&quot;dd/MM/yyyy&quot;)]" To="[str_Emails]">
       <ui:SendOutlookMail.Files>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
       </ui:SendOutlookMail.Files>

@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2356.8,1487.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>869.6,1072.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="44">
@@ -126,11 +126,11 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">0,619.6</av:Point>
-                  <av:Size x:Key="ShapeSize">200,160.8</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">100,780.4 100,805.6</av:PointCollection>
+                  <av:Size x:Key="ShapeSize">200,176.8</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">100,796.4 100,805.6</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap2010:Annotation.AnnotationText="Builds invoice using unpacked data, downloads invoice, then clears downloads in chrome to stabilize process for multiple transactions" DisplayName="Build and Download Invoice" sap:VirtualizedContainerService.HintSize="200,160.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence sap2010:Annotation.AnnotationText="Builds invoice using unpacked data, downloads invoice, then clears downloads in chrome to stabilize process for multiple transactions" DisplayName="Build and Download Invoice" sap:VirtualizedContainerService.HintSize="200,176.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -258,7 +258,7 @@
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">490,533.6</av:Point>
               <av:Size x:Key="ShapeSize">200,52.8</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">590,586.4 590,635.6</av:PointCollection>
+              <av:PointCollection x:Key="ConnectorLocation">590,586.4 590,616.4 580,616.4 580,635.6</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <ui:LogMessage DisplayName="Notify - Vendor Profile to be Created" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;Vendor folder doesn't exist. Creating folder...&quot;]">
@@ -272,9 +272,9 @@
             <FlowStep x:Name="__ReferenceID4">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <av:Point x:Key="ShapeLocation">490,635.6</av:Point>
+                  <av:Point x:Key="ShapeLocation">480,635.6</av:Point>
                   <av:Size x:Key="ShapeSize">200,128.8</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">490,700 200,700</av:PointCollection>
+                  <av:PointCollection x:Key="ConnectorLocation">480,700 450,700 450,708 200,708</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <Sequence sap2010:Annotation.AnnotationText="Create new Folder named by str_VendorID (Tax No on ACME)" DisplayName="Create Vendor Folder" sap:VirtualizedContainerService.HintSize="200,128.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
@@ -367,7 +367,7 @@
               <av:PointCollection x:Key="ConnectorLocation">340,466.4 340,516.4</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence sap2010:Annotation.AnnotationText="Check date of invoice for valid date,&#xD;&#xA;Check currency of str_InvoiceTotal, coverting to GBP if needed" DisplayName="Validate Data" sap:VirtualizedContainerService.HintSize="560.8,1188.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence sap2010:Annotation.AnnotationText="Check date of invoice for valid date,&#xD;&#xA;Check currency of str_InvoiceTotal, coverting to GBP if needed" DisplayName="Validate Data" sap:VirtualizedContainerService.HintSize="200,160.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>

@@ -71,6 +71,7 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="ConvertToGBP" sap:VirtualizedContainerService.HintSize="652,1461.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -199,7 +200,7 @@
                       </scg:List>
                     </ui:MultipleAssign.AssignOperations>
                   </ui:MultipleAssign>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Currency conversion complete. New total value is: &quot; + io_str_InvoiceTotal]" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[&quot;Currency conversion complete. New total value is: &quot; + io_str_InvoiceTotal]" />
                 </Sequence>
               </If.Then>
             </If>
