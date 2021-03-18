@@ -1,14 +1,14 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="BuildReport" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="BuildReport" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="str_Emails" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>820.8,639.2</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2356.8,1600.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>BuildReport_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="29">
+    <scg:List x:TypeArguments="x:String" Capacity="33">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -38,10 +38,14 @@
       <x:String>System.Reflection</x:String>
       <x:String>System.Runtime.InteropServices</x:String>
       <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="29">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="30">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -70,24 +74,80 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="BuildReport" sap:VirtualizedContainerService.HintSize="375.2,534.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="BuildReport" sap:VirtualizedContainerService.HintSize="452,1496" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:IEnumerable(ui:QueueItem)" Name="SuccessfulItems" />
       <Variable x:TypeArguments="x:String" Name="str_SuccessfulJobsCount" />
       <Variable x:TypeArguments="scg:IEnumerable(ui:QueueItem)" Name="FailedItems" />
       <Variable x:TypeArguments="x:String" Name="str_FailedJobsCount" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Jobs" />
+      <Variable x:TypeArguments="scg:IEnumerable(ui:QueueItem)" Name="AllProcessedItems" />
+      <Variable x:TypeArguments="s:DateTime" Default="[DateTime.Now.AddHours(-24)]" Name="Date_TimeSpan" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:GetQueueItems Duration="{x:Null}" Priority="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" To="{x:Null}" Top="{x:Null}" DisplayName="Get Queue Items" FilterStrategy="StartsWith" From="[DateTime.Now.AddHours(-24)]" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="GetQueueItems_1" QueueItemStates="Successful" QueueName="001_InvoiceTransferProcess_Invoices" Result="[SuccessfulItems]" />
-    <ui:GetQueueItems Duration="{x:Null}" Priority="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" To="{x:Null}" Top="{x:Null}" DisplayName="Get Queue Items" FilterStrategy="StartsWith" From="[DateTime.Now.AddHours(-24)]" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="GetQueueItems_2" QueueItemStates="Failed" QueueName="001_InvoiceTransferProcess_Invoices" Result="[FailedItems]" />
-    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="333.6,130.4" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:BuildDataTable DataTable="[dt_Jobs]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="410.4,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;InvoiceNumber&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;VendorID&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;InvoiceItem&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Total&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;  &lt;TableName&gt;&#xA;    &lt;InvoiceNumber&gt;Invoice Number&lt;/InvoiceNumber&gt;&#xA;    &lt;VendorID&gt;Vendor ID&lt;/VendorID&gt;&#xA;    &lt;InvoiceItem&gt;Invoice Item&lt;/InvoiceItem&gt;&#xA;    &lt;Total&gt;Total&lt;/Total&gt;&#xA;    &lt;Date&gt;Date&lt;/Date&gt;&#xA;  &lt;/TableName&gt;&#xA;&lt;/NewDataSet&gt;" />
+    <ui:GetQueueItems Duration="{x:Null}" From="{x:Null}" Priority="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" Top="{x:Null}" DisplayName="Get Queue Items" FilterStrategy="StartsWith" sap:VirtualizedContainerService.HintSize="410.4,22.4" sap2010:WorkflowViewState.IdRef="GetQueueItems_3" QueueItemStates="Failed, Successful" QueueName="001_InvoiceTransferProcess_Invoices" Result="[AllProcessedItems]" To="[Date_TimeSpan]" />
+    <ui:GetQueueItems Duration="{x:Null}" From="{x:Null}" Priority="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" Top="{x:Null}" DisplayName="Get Queue Items" FilterStrategy="StartsWith" sap:VirtualizedContainerService.HintSize="410.4,22.4" sap2010:WorkflowViewState.IdRef="GetQueueItems_1" QueueItemStates="Successful" QueueName="001_InvoiceTransferProcess_Invoices" Result="[SuccessfulItems]" To="[Date_TimeSpan]" />
+    <ui:GetQueueItems Duration="{x:Null}" From="{x:Null}" Priority="{x:Null}" Reference="{x:Null}" Skip="{x:Null}" TimeoutMS="{x:Null}" Top="{x:Null}" DisplayName="Get Queue Items" FilterStrategy="StartsWith" sap:VirtualizedContainerService.HintSize="410.4,22.4" sap2010:WorkflowViewState.IdRef="GetQueueItems_2" QueueItemStates="Failed" QueueName="001_InvoiceTransferProcess_Invoices" Result="[FailedItems]" To="[Date_TimeSpan]" />
+    <ui:ForEach x:TypeArguments="ui:QueueItem" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="410.4,603.2" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[AllProcessedItems]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="ui:QueueItem">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:QueueItem" Name="item" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="375.2,468.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="str_Total" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[str_Total]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[item.SpecificContent("Total").ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap:VirtualizedContainerService.HintSize="333.6,113.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Validation\ConvertToGBP.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InOutArgument x:TypeArguments="x:String" x:Key="io_str_InvoiceTotal">
+                  <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="str_Total" />
+                </InOutArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+            <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[str_Total]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[str_Total + " GBP"]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{item.SpecificContent(&quot;InvoiceNumber&quot;).ToString,&#xD;&#xA;item.SpecificContent(&quot;VendorID&quot;).ToString,&#xD;&#xA;item.SpecificContent(&quot;InvoiceItem&quot;).ToString,&#xD;&#xA;str_Total,&#xD;&#xA;item.SpecificContent(&quot;Date&quot;).ToString&#xD;&#xA;}]" DataTable="[dt_Jobs]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:WriteRange AddHeaders="False" DataTable="[dt_Jobs]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="410.4,116" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="Sheet1" WorkbookPath="Resources\DailyResults.xlsx">
+      <ui:WriteRange.StartingCell>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </ui:WriteRange.StartingCell>
+    </ui:WriteRange>
+    <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="410.4,130.4" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -109,9 +169,11 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="lfearon@robiquity.com" Body="[&quot;Good Afternoon,&quot; + Environment.NewLine +Environment.NewLine +&#xD;&#xA;&quot;The Invoice Transfer Process ran &quot; + (Integer.Parse(str_SuccessfulJobsCount) + Integer.Parse(str_FailedJobsCount)).ToString + &quot; items today.&quot; + Environment.NewLine + &#xD;&#xA;&quot;Of those cases; &quot; + Environment.NewLine + Environment.NewLine +&#xD;&#xA;str_SuccessfulJobsCount + &quot; were successfull.&quot; + Environment.NewLine + &#xD;&#xA;str_FailedJobsCount + &quot; have failed.&quot; + Environment.NewLine + Environment.NewLine +&#xD;&#xA;&quot;Kind regards, &quot; + Environment.NewLine + &#xD;&#xA;&quot;Your Friendly Neighbourhood Robot&quot;]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="333.6,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;Invoice Transfer Process - End of Day Report &quot; + Date.Now.Date.ToString(&quot;dd/MM/yyyy&quot;)]" To="[str_Emails]">
+    <ui:SendOutlookMail Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Account="lfearon@robiquity.com" Body="[&quot;Good Afternoon,&quot; + Environment.NewLine +Environment.NewLine +&#xD;&#xA;&quot;The Invoice Transfer Process ran &quot; + (Integer.Parse(str_SuccessfulJobsCount) + Integer.Parse(str_FailedJobsCount)).ToString + &quot; items today.&quot; + Environment.NewLine + &#xD;&#xA;&quot;Of those cases; &quot; + Environment.NewLine + Environment.NewLine +&#xD;&#xA;str_SuccessfulJobsCount + &quot; were successfull.&quot; + Environment.NewLine + &#xD;&#xA;str_FailedJobsCount + &quot; have failed.&quot; + Environment.NewLine + Environment.NewLine +&#xD;&#xA;&quot;Kind regards, &quot; + Environment.NewLine + &#xD;&#xA;&quot;Your Friendly Neighbourhood Robot&quot;]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="410.4,146.4" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;Invoice Transfer Process - End of Day Report &quot; + Date.Now.Date.ToString(&quot;dd/MM/yyyy&quot;)]" To="[str_Emails]">
       <ui:SendOutlookMail.Files>
-        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+          <InArgument x:TypeArguments="x:String">Resources\DailyResults.xlsx</InArgument>
+        </scg:List>
       </ui:SendOutlookMail.Files>
     </ui:SendOutlookMail>
   </Sequence>
