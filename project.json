@@ -4,7 +4,7 @@
   "main": "Main.xaml",
   "dependencies": {
     "Library_ACME_Chrome": "[1.0.4]",
-    "Library_Zoho_Chrome": "[1.0.14]",
+    "Library_Zoho_Chrome": "[1.0.15]",
     "UiPath.Excel.Activities": "[2.9.3]",
     "UiPath.System.Activities": "[20.10.1]",
     "UiPath.UIAutomation.Activities": "[20.10.6]",
