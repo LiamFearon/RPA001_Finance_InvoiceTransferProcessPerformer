@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>869.6,1072.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2356.8,1487.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="44">
@@ -70,6 +70,7 @@
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Process Workflow" sap:VirtualizedContainerService.HintSize="880,1008" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -79,7 +80,11 @@
       <Variable x:TypeArguments="x:String" Name="str_InvoiceItem" />
       <Variable x:TypeArguments="x:String" Name="str_InvoiceTotal" />
       <Variable x:TypeArguments="x:String" Name="str_InvoiceDate" />
-      <Variable x:TypeArguments="x:String" Default="C:\Users\tehbo\OneDrive - Robiquity Limited\Documents\RPA001_Finance_InvoiceTransferProcess\Invoices\" Name="str_PATH" />
+      <Variable x:TypeArguments="x:String" Name="str_PATH">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String">C:\Users\tehbo\OneDrive - Robiquity Limited\Documents\Dummy Project\RPA001_Finance_InvoiceTransferProcess\RPA001_Finance_InvoiceTransferProcessPerformer\Invoices\</Literal>
+        </Variable.Default>
+      </Variable>
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -126,11 +131,11 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">0,619.6</av:Point>
-                  <av:Size x:Key="ShapeSize">200,176.8</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">100,796.4 100,805.6</av:PointCollection>
+                  <av:Size x:Key="ShapeSize">200,160.8</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">100,780.4 100,805.6</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap2010:Annotation.AnnotationText="Builds invoice using unpacked data, downloads invoice, then clears downloads in chrome to stabilize process for multiple transactions" DisplayName="Build and Download Invoice" sap:VirtualizedContainerService.HintSize="200,176.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Sequence sap2010:Annotation.AnnotationText="Builds invoice using unpacked data, downloads invoice, then clears downloads in chrome to stabilize process for multiple transactions" DisplayName="Build and Download Invoice" sap:VirtualizedContainerService.HintSize="200,160.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -234,9 +239,13 @@
                       <av:PointCollection x:Key="ConnectorLocation">370,204.666666666667 370,236.5</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Sequence sap2010:Annotation.AnnotationText="Moves downloaded invoice to invoice folder created earlier in flow" DisplayName="Move Invoice to Vendor Folder" sap:VirtualizedContainerService.HintSize="200,128.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence sap2010:Annotation.AnnotationText="Moves downloaded invoice to invoice folder created earlier in flow" DisplayName="Move Invoice to Vendor Folder" sap:VirtualizedContainerService.HintSize="425.6,284" sap2010:WorkflowViewState.IdRef="Sequence_3">
                     <Sequence.Variables>
-                      <Variable x:TypeArguments="x:String" Default="[str_VendorID + &quot;\&quot; + str_InvoiceID +&quot; &quot; + DateTime.Now.ToString(&quot;dd-MM-yyyy hh_mm&quot;) + &quot;.pdf&quot;]" Name="str_FileName" />
+                      <Variable x:TypeArguments="x:String" Name="str_FileName">
+                        <Variable.Default>
+                          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="str_VendorID + &quot;\&quot; + str_InvoiceID +&quot; (&quot; + DateTime.Now.ToString(&quot;dd-MM-yyyy hh_mm&quot;) + &quot;)&quot; + &quot;.pdf&quot;" />
+                        </Variable.Default>
+                      </Variable>
                     </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -274,7 +283,7 @@
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">480,635.6</av:Point>
                   <av:Size x:Key="ShapeSize">200,128.8</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">480,700 450,700 450,708 200,708</av:PointCollection>
+                  <av:PointCollection x:Key="ConnectorLocation">480,700 200,700</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <Sequence sap2010:Annotation.AnnotationText="Create new Folder named by str_VendorID (Tax No on ACME)" DisplayName="Create Vendor Folder" sap:VirtualizedContainerService.HintSize="200,128.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
@@ -367,14 +376,14 @@
               <av:PointCollection x:Key="ConnectorLocation">340,466.4 340,516.4</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Sequence sap2010:Annotation.AnnotationText="Check date of invoice for valid date,&#xD;&#xA;Check currency of str_InvoiceTotal, coverting to GBP if needed" DisplayName="Validate Data" sap:VirtualizedContainerService.HintSize="200,160.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence sap2010:Annotation.AnnotationText="Check date of invoice for valid date,&#xA;Check currency of str_InvoiceTotal, coverting to GBP if needed" DisplayName="Validate Data" sap:VirtualizedContainerService.HintSize="200,160.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If sap2010:Annotation.AnnotationText="Some items do not have a date and have defaulted to '00/00/000'&#xD;&#xA;Per SME request, these items should be changed to have the date '01/01/2016'" Condition="[str_InvoiceDate.Equals(&quot;00/00/0000&quot;)]" DisplayName="If Date Null" sap:VirtualizedContainerService.HintSize="519.2,479.2" sap2010:WorkflowViewState.IdRef="If_1">
+            <If sap2010:Annotation.AnnotationText="Some items do not have a date and have defaulted to '00/00/000'&#xA;Per SME request, these items should be changed to have the date '01/01/2016'" Condition="[str_InvoiceDate.Equals(&quot;00/00/0000&quot;)]" DisplayName="If Date Null" sap:VirtualizedContainerService.HintSize="519.2,479.2" sap2010:WorkflowViewState.IdRef="If_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -439,7 +448,7 @@
           <av:Size x:Key="ShapeSize">333.6,56</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:Comment sap:VirtualizedContainerService.HintSize="333.6,56" sap2010:WorkflowViewState.IdRef="Comment_1" Text="/* ToDo:&#xD;&#xA;Process invoices of multiple rows&#xD;&#xA;*/">
+      <ui:Comment sap:VirtualizedContainerService.HintSize="333.6,56" sap2010:WorkflowViewState.IdRef="Comment_1" Text="/* ToDo:&#xA;Process invoices of multiple rows&#xA;*/">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
